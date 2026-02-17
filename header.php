@@ -3,26 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Mon Site Quiz</title>
-    <style>
-        body {
-            font-family: Arial;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
