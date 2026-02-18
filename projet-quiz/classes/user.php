@@ -7,17 +7,16 @@ class User {
     private $pdo;
 
     public function __construct() {
-        // Utiliser ton Singleton
         $db = Database::getInstance();
         $this->pdo = $db->getConnexion();
     }
 
-    // Nettoyer les données (sécurité)
+    // Nettoyer les données
     private function clean($data) {
         return trim(htmlspecialchars($data));
     }
 
-    // INSCRIPTION
+    // Inscrire un nouvel utilisateur
     public function register($firstName, $lastName, $email, $password) {
         $firstName = $this->clean($firstName);
         $lastName = $this->clean($lastName);
@@ -30,7 +29,7 @@ class User {
         return $stmt->execute([$firstName, $lastName, $email, $hashedPassword]);
     }
 
-    // Vérifier si l'email existe
+    // Vérifier si l'email existe déjà
     public function emailExists($email) {
         $sql = "SELECT * FROM user WHERE email = ?";
         $stmt = $this->pdo->prepare($sql);
@@ -38,7 +37,7 @@ class User {
         return $stmt->rowCount() > 0;
     }
 
-    // CONNEXION
+    // Connecter un utilisateur
     public function login($email, $password) {
         $sql = "SELECT * FROM user WHERE email = ?";
         $stmt = $this->pdo->prepare($sql);
@@ -48,6 +47,7 @@ class User {
             $user = $stmt->fetch();
             
             if (password_verify($password, $user['password'])) {
+                // Stocker les infos en session
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['firstName'] = $user['firstName'];
                 $_SESSION['lastName'] = $user['lastName'];
@@ -59,7 +59,7 @@ class User {
         return false;
     }
 
-    // RÉCUPÉRER UN UTILISATEUR
+    // Récupérer un utilisateur par son ID
     public function getUserById($id) {
         $sql = "SELECT id, firstName, lastName, email, role FROM user WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);
@@ -67,7 +67,7 @@ class User {
         return $stmt->fetch();
     }
 
-    // MODIFIER LE PROFIL
+    // Mettre à jour les informations de profil
     public function updateProfile($id, $firstName, $lastName, $email) {
         $firstName = $this->clean($firstName);
         $lastName = $this->clean($lastName);
@@ -78,7 +78,7 @@ class User {
         return $stmt->execute([$firstName, $lastName, $email, $id]);
     }
 
-    // MODIFIER LE MOT DE PASSE
+    // Mettre à jour le mot de passe
     public function updatePassword($id, $newPassword) {
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
         $sql = "UPDATE user SET password = ? WHERE id = ?";
@@ -86,7 +86,7 @@ class User {
         return $stmt->execute([$hashedPassword, $id]);
     }
 
-    // VÉRIFIER L'ANCIEN MOT DE PASSE
+    // Vérifier si le mot de passe est correct
     public function checkPassword($id, $password) {
         $sql = "SELECT password FROM user WHERE id = ?";
         $stmt = $this->pdo->prepare($sql);

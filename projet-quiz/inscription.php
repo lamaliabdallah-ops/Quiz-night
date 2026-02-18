@@ -3,6 +3,7 @@ session_start();
 require_once 'classes/User.php';
 require_once 'db.php';
 
+require_once 'header.php';
 $error = '';
 
 if (isset($_POST['submit'])) {
@@ -34,6 +35,7 @@ if (isset($_POST['submit'])) {
         }
     }
 }
+require_once 'footer.php'
 ?>
 
 <!DOCTYPE html>
@@ -41,28 +43,30 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <title>Inscription</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylee.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Inscription</h1>
-        
-        <?php 
-        if (!empty($error)) {
-            echo '<p class="error">' . $error . '</p>';
-        }
-        ?>
-        
-        <form method="post">
-            <input type="text" name="firstName" placeholder="Prénom" required>
-            <input type="text" name="lastName" placeholder="Nom" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Mot de passe" required>
-            <input type="password" name="confirm_password" placeholder="Confirmer" required>
-            <button type="submit" name="submit">S'inscrire</button>
-        </form>
-        
-        <p>Déjà un compte ? <a href="connexion.php">Connectez-vous</a></p>
+    <div class="auth-page">
+        <div class="auth-container">
+            <h1>Inscription</h1>
+            
+            <?php 
+            if (!empty($error)) {
+                echo '<p class="error">' . $error . '</p>';
+            }
+            ?>
+            
+            <form method="post">
+                <input type="text" name="firstName" placeholder="Prénom" required>
+                <input type="text" name="lastName" placeholder="Nom" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Mot de passe" required>
+                <input type="password" name="confirm_password" placeholder="Confirmer" required>
+                <button type="submit" name="submit">S'inscrire</button>
+            </form>
+            
+            <p>Déjà un compte ? <a href="connexion.php">Connectez-vous</a></p>
+        </div>
     </div>
 </body>
 </html>
