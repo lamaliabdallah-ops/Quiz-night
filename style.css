@@ -1,18 +1,104 @@
- body {
-            font-family: Arial;
-            margin: 0;
-            padding: 0;
+/* Header fixe */
+body {
+    font-family: Arial;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+
+    /* Dégradé initial */
+    background: linear-gradient(270deg, #fde68a, #fbcfe8, #a5f3fc);
+    background-size: 600% 600%;  /* permet le mouvement */
+
+    /* Animation */
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header {
+    background-color: #172def;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 30px; /* espace entre le titre et les liens */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+}
+
+nav a {
+    color: white;
+    margin-left: 60px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Footer sticky */
+footer {
+    background-color: #172def;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* Contenu principal */
+main {
+    padding-top: 70px;   /* espace pour header */
+    padding-bottom: 50px; /* espace pour footer */
+}
+
+h2 {
+            color: #172def;
         }
 
-        header {
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            text-align: center;
+        .container {
+            display: flex;              
+            justify-content: center;   
+            gap: 20px;                  
         }
 
-        nav a {
+        /* Carte Quiz */
+        .quiz {
+            background: white;
+            width: 250px;
+            margin: 20px 0;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .quiz h3 {
+            margin: 10px 0;
+        }
+
+        .quiz a {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #172def;
             color: white;
-            margin: 0 10px;
             text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .quiz a:hover {
+            background-color: #0f1bb5;
         }

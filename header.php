@@ -9,16 +9,17 @@
 
 <header>
     <nav>
-        <a href=>Accueil</a>
+        
+            
+
+        
+        <a href=>Tout les Quizz</a>
+        <a href=>Resultat</a>
+        <a href=>inscription</a> 
         <a href=>connexion</a>
-        <a href=>inscription</a>
-        <a href=>profil</a>
-        <a href=>create</a>
-        <a href=>read</a>
-        <a href=>update</a>
 
         
     </nav>
 </header>
 
-<div style="padding:20px;">
+<div style="padding:40px;">
