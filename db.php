@@ -12,7 +12,7 @@ class Database{
     {
         $this->pdo = new PDO("mysql:host=mourtalla-sall.students-laplateforme.io;
         dbname=mourtalla-sall_QuizNight;charset=utf8", 
-        'Quiz_night', 'QuizNight123@',
+        'mickael', 'yk34b#7Q4',
         [
            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION 
         ]); 
