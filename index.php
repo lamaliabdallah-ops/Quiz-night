@@ -8,26 +8,31 @@
     <title>quizz</title>
 </head>
 <body>
-    <h2>Selectionner un Quiz</h2>
+<main>
+        <h2>Selectionner un Quiz</h2>
 
+</main>
 <div class="container">
 
     <div class="quiz">
         <h3>Histoire et Géographie</h3>
-        <a href="">Jouer</a>
+        <a href="histoire-Geo">Jouer</a>
     </div>
 
     <div class="quiz">
         <h3>Sports</h3>
-        <a href="">Jouer</a>
+        <a href="sport.php">Jouer</a>
     </div>
 
     <div class="quiz">
         <h3>Informatique</h3>
-        <a href="infortique.php">Jouer</a>
+        <a href="informatique.php">Jouer</a>
     </div>
 
 </div>
 
+<?php
+require_once 'db.php';
 
-<?php require_once('footer.php'); ?>
+
+require_once('footer.php'); ?>
