@@ -61,45 +61,49 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <title>Modifier le Quiz</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<?php if ($message): ?>
-    <p><?= $message ?></p>
-<?php endif; ?>
-
-<form  method="post">
-    <h3>Le Quiz</h3>
-
-    <label>Nom du Quiz</label>
-    <input type="text" name="name" value="<?= htmlspecialchars($quizData['name'] ) ?>"><br>
-
-    <label>Catégorie</label>
-    <select name="id_categorie">
-        <?php foreach ($resultatCategorie as $cat): ?>
-            <option value="<?= $cat['id'] ?>" <?= ($cat['id'] == ($quizData['id_categorie'] ?? 0)) ? 'selected' : '' ?>>
-                <?= htmlspecialchars($cat['name']) ?>
-            </option>
-        <?php endforeach; ?>
-    </select><br>
-
-
-    <label>Question</label>
-    <input type="text" name="question" value="<?= htmlspecialchars($questionActuelle['question']) ?>"><br>
-
-    <label>Réponse 1</label>
-    <input type="text" name="reponse1" value="<?= htmlspecialchars($reponsesData[0]['reponse'] ) ?>"><br>
-
-    <label>Réponse 2</label>
-    <input type="text" name="reponse2" value="<?= htmlspecialchars($reponsesData[1]['reponse'] ) ?>"><br>
-
-    <label>Bonne Réponse</label>
-    <input type="text" name="isTrue" value="<?= htmlspecialchars($reponsesData[2]['reponse'] ) ?>"><br>
-
-    <input type="submit" name="submit" value="Modifier">
-</form>
-
-<a href="readQuiz.php">Annuler</a>
-
-</body>
-</html>
+    
+<div class="auth-page">
+    <div class="auth-container">
+        <?php if ($message): ?>
+            <p><?= $message ?></p>
+        <?php endif; ?>
+        <form  method="post">
+            <h1>Modifier un Quiz</h1>
+                <label>Nom du Quiz</label>
+                <input type="text" name="name" value="<?= htmlspecialchars($quizData['name'] ) ?>"><br>
+                
+                <label>Catégorie</label>
+                <select name="id_categorie">
+                    <?php foreach ($resultatCategorie as $cat): ?>
+                        <option value="<?= $cat['id'] ?>" <?= ($cat['id'] == ($quizData['id_categorie'] ?? 0)) ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($cat['name']) ?>
+                        </option>
+                        <?php endforeach; ?>
+                    </select><br>
+                    
+                    
+                    <label>Question</label>
+                    <input type="text" name="question" value="<?= htmlspecialchars($questionActuelle['question']) ?>"><br>
+                    
+                    <label>Réponse 1</label>
+                    <input type="text" name="reponse1" value="<?= htmlspecialchars($reponsesData[0]['reponse'] ) ?>"><br>
+                    
+                    <label>Réponse 2</label>
+                    <input type="text" name="reponse2" value="<?= htmlspecialchars($reponsesData[1]['reponse'] ) ?>"><br>
+                    
+                    <label>Bonne Réponse</label>
+                    <input type="text" name="isTrue" value="<?= htmlspecialchars($reponsesData[2]['reponse'] ) ?>"><br>
+                    
+                    <button type="submit" name="submit">Modifier</button>       
+         </form>
+            
+               <button><a href="readQuiz.php">Annuler</a></button>
+    </div>
+</div>
+        
+    </body>
+    </html>

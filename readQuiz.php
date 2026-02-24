@@ -32,46 +32,50 @@ $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Liste des Quiz</title>
+    <link rel="stylesheet" href="read.css">
 </head>
 <body>
-
-<h2>Liste des Quiz</h2>
-
-<a href="createQuiz.php">Créer un quiz</a>
-
-<table border="1" cellpadding="10">
-    <thead>
-        <tr>
-            <th>Quiz</th>
-            <th>Catégorie</th>
-            <th>Question</th>
-            <th>Réponses</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-
-<?php foreach ($resultats as $row): ?>
-    <tr>
-        <td><?= htmlspecialchars($row['quiz_name']) ?></td>
-        <td><?= htmlspecialchars($row['categorie_name']) ?></td>
-        <td><?= htmlspecialchars($row['question']) ?></td>
-        <td><?= htmlspecialchars($row['reponses']) ?></td>
-        <td>
-            <a href="updateQuiz.php?id=<?= $row['quiz_id'] ?>">
-                <button>Modifier</button>
-            </a>
-
-            <a href="deleteQuiz.php?id=<?= $row['quiz_id'] ?>" 
-               onclick="return confirm('Supprimer ce quiz ?')">
-                <button>Supprimer</button>
-            </a>
-        </td>
-    </tr>
-<?php endforeach; ?>
-
-    </tbody>
-</table>
+<div class="read-page">
+    <div class="read-container">
+        <h1>Liste des Quiz</h1>
+        
+        <a href="createQuiz.php"> <button>Créer un quiz</button></a>
+        
+        <table border="1" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>Quiz</th>
+                    <th>Catégorie</th>
+                    <th>Question</th>
+                    <th>Réponses</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <?php foreach ($resultats as $row): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['quiz_name']) ?></td>
+                        <td><?= htmlspecialchars($row['categorie_name']) ?></td>
+                        <td><?= htmlspecialchars($row['question']) ?></td>
+                        <td><?= htmlspecialchars($row['reponses']) ?></td>
+                        <td>
+                            <a href="updateQuiz.php?id=<?= $row['quiz_id'] ?>">
+                                <button>Modifier</button>
+                            </a>
+                            
+                            <a href="deleteQuiz.php?id=<?= $row['quiz_id'] ?>" 
+                            onclick="return confirm('Supprimer ce quiz ?')">
+                            <button>Supprimer</button>
+                        </a>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+                
+            </tbody>
+        </table>
+    </div>    
+</div>
 
 </body>
 </html>

@@ -54,37 +54,44 @@ $categories = $categorie->getAll();
 <head>
     <meta charset="UTF-8">
     <title>Créer un Quiz</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <?php if ($message): ?>
-        <p><?= $message ?></p>
-    <?php endif; ?>
+     <div class="auth-page">
+          <div class="auth-container">
 
-    <form method="post">
-
-        <h3>Le Quiz</h3>
-        <label>Nom du Quiz</label>
-        <input type="text" name="name"><br>
-
-        <label>Catégorie</label>
-        <select name="id_categorie">
-            <?php foreach ($categories as $cat): ?>
-                <option value="<?= $cat['id'] ?>"><?= htmlspecialchars($cat['name']) ?></option>
-            <?php endforeach; ?>
-        </select><br>
-        <label>Question</label>
-        <input type="text" name="question"><br>
-        <label>Réponse 1</label>
-        <input type="text" name="reponse1"><br>
-
-        <label>Réponse 2</label>
-        <input type="text" name="reponse2"><br>
-
-        <label>Bonne Réponse</label>
-        <input type="text" name="isTrue"><br>
-
-        <input type="submit" name="submit" value="Créer">
-    </form>
-    <a href="readQuiz.php">Annuler</a>
+              <?php if ($message): ?>
+                <p><?= $message ?></p>
+                <?php endif; ?>
+                
+                <form method="post">
+                    
+                    <h1>Créer un Quiz</h1>
+                    <label>Nom du Quiz</label>
+                    <input type="text" name="name"><br>
+                    
+                    <label>Catégorie</label>
+                    <select name="id_categorie">
+                        <?php foreach ($categories as $cat): ?>
+                            <option value="<?= $cat['id'] ?>"><?= htmlspecialchars($cat['name']) ?></option>
+                            <?php endforeach; ?>
+                        </select><br>
+                        <label>Question</label>
+                        <input type="text" name="question"><br>
+                        <label>Réponse 1</label>
+                        <input type="text" name="reponse1"><br>
+                        
+                        <label>Réponse 2</label>
+                        <input type="text" name="reponse2"><br>
+                        
+                        <label>Bonne Réponse</label>
+                        <input type="text" name="isTrue"><br>
+                        
+                    <button type="submit" name="submit">Créer</button>
+                    </form>
+                    <button><a href="readQuiz.php">Annuler</a></button>
+                    
+                </div>
+        </div>
 </body>
 </html>
