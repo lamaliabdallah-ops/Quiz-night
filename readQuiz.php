@@ -1,68 +1,77 @@
 <?php
 require_once 'db.php';
-require_once 'quiz.php';
-require_once 'question.php';
-require_once 'reponse.php';
-require_once 'categorie.php';
 
-$quiz = new Quiz();
-$resultat = $quiz->getAll();
+$database = Database::getInstance();
+$pdo = $database->getConnexion();
+$sql = "SELECT 
+            quiz.id AS quiz_id,
+            quiz.name AS quiz_name,
+            categorie.name AS categorie_name,
+            question_quiz.id AS question_id,
+            question_quiz.question AS question,
+            GROUP_CONCAT(reponses_quiz.reponse SEPARATOR ' | ') AS reponses
+        FROM quiz
+        INNER JOIN categorie 
+            ON quiz.id_categorie = categorie.id
+        INNER JOIN question_quiz 
+            ON question_quiz.quiz_id = quiz.id
+        INNER JOIN reponses_quiz 
+            ON reponses_quiz.id_question_quiz = question_quiz.id
+        GROUP BY question_quiz.id
+        ORDER BY quiz.id";
+$stmt = $pdo->prepare($sql);
 
-$categorie = new Categorie();
-$resultatCategorie = $categorie->getAll();
+$data = [];
+$stmt->execute($data);
 
-$question = new Question();
-$resultatQuestion = $question->getAll();
-
-$reponse = new Reponse();
-$resultatReponse = $reponse->getAll();
+$resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Liste des Quiz</title>
 </head>
 <body>
-    <a href="createQuiz.php">Creer un quiz</a> 
-<?php
-foreach ($resultat as $quiz) {
-    echo "<table border='1'>";
-    echo "<thead>
-            <tr>
-                <th>Quiz</th>
-                <th>Catégorie</th>
-                <th>Question</th>
-                <th>Réponse</th>
-                <th>Actions</th>
-            </tr>
-          </thead>";
-    echo "<tbody>";
 
-    foreach ($resultatQuestion as $question) {
-        foreach ($resultatReponse as $reponse) {
-            if ($reponse['id_question_quiz'] == $question['id']) {
-                foreach ($resultatCategorie as $categorie) {
-                    echo "<tr>";
-                    echo "<td>" . $quiz['name'] . "</td>";
-                    echo "<td>" . $categorie['name'] . "</td>";
-                    echo "<td>" . $question['question'] . "</td>";
-                    echo "<td>" . $reponse['reponse'] . "</td>";
-                    echo "<td> 
-                    <a href='updateQuiz.php?id=" . $quiz['id'] . "'> <button>Modifier</button> </a>
-                    <a href='deleteQuiz.php?id=" . $quiz['id'] ."'> <button>Supprimer</button> </a>
-                        </td>";
-                    echo "</tr>";
-             }
-         }
-     }
-    }
+<h2>Liste des Quiz</h2>
 
-    echo "</tbody>";
-    echo "</table><br>";
-}
-?>
+<a href="createQuiz.php">Créer un quiz</a>
+
+<table border="1" cellpadding="10">
+    <thead>
+        <tr>
+            <th>Quiz</th>
+            <th>Catégorie</th>
+            <th>Question</th>
+            <th>Réponses</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+<?php foreach ($resultats as $row): ?>
+    <tr>
+        <td><?= htmlspecialchars($row['quiz_name']) ?></td>
+        <td><?= htmlspecialchars($row['categorie_name']) ?></td>
+        <td><?= htmlspecialchars($row['question']) ?></td>
+        <td><?= htmlspecialchars($row['reponses']) ?></td>
+        <td>
+            <a href="updateQuiz.php?id=<?= $row['quiz_id'] ?>">
+                <button>Modifier</button>
+            </a>
+
+            <a href="deleteQuiz.php?id=<?= $row['quiz_id'] ?>" 
+               onclick="return confirm('Supprimer ce quiz ?')">
+                <button>Supprimer</button>
+            </a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+
+    </tbody>
+</table>
 
 </body>
 </html>

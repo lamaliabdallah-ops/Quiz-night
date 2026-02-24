@@ -60,7 +60,7 @@ $categories = $categorie->getAll();
         <p><?= $message ?></p>
     <?php endif; ?>
 
-    <form action="" method="post">
+    <form method="post">
 
         <h3>Le Quiz</h3>
         <label>Nom du Quiz</label>

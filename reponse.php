@@ -35,18 +35,18 @@ class Reponse {
         $data->execute();
         return $data->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function update($id, $reponse, $reponseTrue) {
+    public function update($id, $reponse, $isTrue) {
         $data = $this->pdo->prepare(
-            'UPDATE reponses_quiz SET reponse = :reponse, reponseTrue = :reponseTrue WHERE id = :id'
+            'UPDATE reponses_quiz SET reponse = :reponse, isTrue = :isTrue WHERE id = :id'
         );
         $data->bindValue(':reponse',$this->securityInput($reponse), PDO::PARAM_STR);
-        $data->bindValue(':reponseTrue', $reponseTrue,PDO::PARAM_INT);
+        $data->bindValue(':isTrue', $isTrue,PDO::PARAM_INT);
         $data->bindValue(':id',$id, PDO::PARAM_INT);
         return $data->execute();
     }
 
     public function delete($id) {
-        $data = $this->pdo->prepare('DELETE FROM reposequiz WHERE id = :id');
+        $data = $this->pdo->prepare('DELETE FROM reponses_quiz WHERE id = :id');
         $data->bindValue(':id', $id, PDO::PARAM_INT);
         return $data->execute();
     }

@@ -39,9 +39,8 @@ class Quiz {
         $data = $this->pdo->prepare('SELECT * FROM quiz WHERE id = :id');
         $data->bindValue(':id', $id, PDO::PARAM_INT);
         $data->execute();
-        return $data->fetchAll(PDO::FETCH_ASSOC);
+        return $data->fetch(PDO::FETCH_ASSOC);
     }
-
     public function update($id, $name, $id_categorie) {
         $data = $this->pdo->prepare(
             'UPDATE quiz SET name = :name, id_categorie = :id_categorie WHERE id = :id'
