@@ -1,43 +1,57 @@
 <?php
- require_once('header.php'); 
+require_once 'db.php';
+include('header.php'); 
 
-require_once('db.php');
 $db = Database::getInstance();
-$pdo = $db->getConnexion();
+$conn = $db->getConnexion();
 
-$data = $pdo->prepare('SELECT * FROM categorie');
-$data->execute(['categorie' => 'informatique']);
-$data_question = $data->fetchAll(PDO::FETCH_ASSOC);
+$sql = "SELECT q.id, q.question 
+        FROM question_quiz q
+        JOIN quiz qz ON qz.id = q.quiz_id
+        WHERE qz.id_categorie = 2";
 
+$result = $conn->query($sql);
+$questions = $result->fetchAll(PDO::FETCH_ASSOC);
+
+$sql2 = "SELECT * FROM reponses_quiz";
+$result2 = $conn->query($sql2);
+$reponses = $result2->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Informatique</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Quiz Informatique</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Quiz Informatique</h2>
-    <form method="POST" action="resultat.php">
 
-    <section>
-<?php 
-foreach($data_question as $key => $value){
-    
-    echo "<p>" . $value['name'] . "</p>";
-    echo "<h3>" . $value['question'] . "</h3>";
-//     echo "<input type='radio' name='".$questionName."' value='".$value['reponse1']."'> ".$value['reponse1']."<br>";
-//     echo "<input type='radio' name='".$questionName."' value='".$value['reponse2']."'> ".$value['reponse2']."<br>";
-//     echo "<input type='radio' name='".$questionName."' value='".$value['reponseTrue']."'> ".$value['reponseTrue']."<br>";
+<h3>Quiz Informatique</h3>
+
+<form method="POST" action="resultat.php">
+<input type="hidden" name="id_categorie" value="2">
+<input type="hidden" name="nom_categorie" value="Informatique">
+
+<?php
+foreach($questions as $q){
+    echo "<div class='question-block'>";
+    echo "<p class='question-texte'>" . $q['question'] . "</p>";
+    echo "<div class='reponses'>";
+    foreach($reponses as $r){
+        if($r['id_question_quiz'] == $q['id']){
+            echo "<label class='reponse-label'>";
+            echo "<input type='radio' name='rep_" . $q['id'] . "' value='" . $r['isTrue'] . "'>";
+            echo $r['reponse'];
+            echo "</label>";
+        }
+    }
+    echo "</div>";
+    echo "</div>";
 }
 ?>
 
-    </section>
-            <button type="submit">Valider</button>
+<a href="resultat.php"><button type="submit" class="btn-valider">Valider</button></a>
+</form>
 
-
-<?php require_once('footer.php'); 
-?>
+<?php include('footer.php'); ?>

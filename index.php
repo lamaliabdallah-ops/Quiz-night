@@ -1,38 +1,16 @@
-<?php require_once('header.php'); ?>
+<body class="home-page">
+    <?php include('header.php'); ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>quizz</title>
-</head>
-<body>
-<main>
-        <h2>Selectionner un Quiz</h2>
+    <div class="home-bg">
+        <h1>Bienvenue sur le Quiz !</h1>
 
-</main>
-<div class="container">
-
-    <div class="quiz">
-        <h3>Histoire et Géographie</h3>
-        <a href="histoire-Geo">Jouer</a>
+        <div class="presentation">
+            <h2>À propos du Quiz</h2>
+            <p>Bienvenue sur notre quiz interactif ! Mettez vos connaissances à l’épreuve et relevez le défi à travers une série de questions variées et stimulantes.</p>
+            <p>Que vous soyez débutant ou passionné, vous pourrez tester vos compétences, améliorer votre culture générale et suivre votre progression.</p>
+            <p>À la fin de chaque quiz, découvrez votre score et tentez de faire encore mieux !</p>
+        </div>
     </div>
 
-    <div class="quiz">
-        <h3>Sports</h3>
-        <a href="sport.php">Jouer</a>
-    </div>
-
-    <div class="quiz">
-        <h3>Informatique</h3>
-        <a href="informatique.php">Jouer</a>
-    </div>
-
-</div>
-
-<?php
-require_once 'db.php';
-
-
-require_once('footer.php'); ?>
+    <?php include('footer.php'); ?>
+</body>

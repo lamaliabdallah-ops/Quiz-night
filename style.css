@@ -27,13 +27,13 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    height: 90px; 
+    height: 68px; 
     box-sizing: border-box;
     z-index: 1000;
 }
 
 .logo img {
-    width: 200px;
+    width: 180px;
     height: auto;
 }
 
@@ -117,6 +117,8 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
+    height:20px; 
+
 }
 
 @media only screen and (max-width: 600px) {
@@ -157,3 +159,141 @@ footer {
         width: 150px;
     }
 }
+/* Styles généraux du body */
+body.home-page {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Styles pour l'arrière-plan de la page d'accueil */
+.home-bg {
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                url('photosin.jpg') no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 80px 20px;
+}
+/* Titre principal */
+.home-bg h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+/* Présentation du quiz */
+.presentation {
+    background-color: rgba(255, 255, 255, 0.9); /* Fond blanc transparent */
+    color: #333;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.presentation h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #2575fc;
+}
+
+.presentation p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Responsive pour petits écrans */
+@media (max-width: 600px) {
+    .home-bg h1 {
+        font-size: 2em;
+    }
+
+    .presentation {
+        padding: 20px;
+        margin: 20px;
+    }
+}
+
+
+
+h3 {
+    color: orange;
+    text-align: center;
+    margin-top: 57px;
+    font-size: 22px;
+}
+
+.question-block {
+    background-color: #4040cc;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 30px;
+}
+
+.question-texte {
+    color: white;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.reponses {
+    display: flex;
+    gap: 10px;
+}
+
+.reponse-label {
+    flex: 1;
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.reponse-label:has(input:checked) {
+    background-color: #ff69b4;
+    color: white;
+}
+
+.reponse-label input { display: none; }
+
+.btn-valider {
+    display: block;
+    margin: 6px auto;
+    padding: 10px 40px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+h3 {
+    color: #333;
+    text-align: center;
+}
+
+.question-block {
+    background-color: white;
+    border-radius: 8px;
+    padding: 5px;
+    margin-bottom: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.question-texte {
+    font-weight: bold;
+    color: #222;
+}
+
+
+

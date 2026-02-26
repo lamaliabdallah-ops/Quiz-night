@@ -1,42 +1,56 @@
 <?php
-require_once('header.php'); 
-require_once('db.php');
+require_once 'db.php';
+include('header.php'); 
+
 $db = Database::getInstance();
-$pdo = $db->getConnexion();
+$conn = $db->getConnexion();
 
-$data = $pdo->prepare('SELECT * FROM quiz WHERE categorie = :categorie');
-$data->execute(['categorie' => 'sport']);
-$data_question = $data->fetchAll(PDO::FETCH_ASSOC);
+$sql = "SELECT q.id, q.question 
+        FROM question_quiz q
+        JOIN quiz qz ON qz.id = q.quiz_id
+        WHERE qz.id_categorie = 3";
 
+$result = $conn->query($sql);
+$questions = $result->fetchAll(PDO::FETCH_ASSOC);
 
+$sql2 = "SELECT * FROM reponses_quiz";
+$result2 = $conn->query($sql2);
+$reponses = $result2->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Sport</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Quiz Sport</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Quiz Sport</h2>
-    <form method="POST">
 
-    <section class="sport">
-<?php 
-foreach($data_question as $key => $value){
-    
-    echo "<p>" . $value['id'] . "</p>";
-    echo "<h3>" . $value['question'] . "</h3>";
-    echo "<input type='radio' name='".$questionName."' value='".$value['reponse1']."'> ";
-    echo "<input type='radio' name='".$questionName."' value='".$value['reponse2']."'>";
-    echo "<input type='radio' name='".$questionName."' value='".$value['reponseTrue']."'>";
+<h3>Quiz Sport</h3>
+
+<form method="POST" action="resultat.php">
+<input type="hidden" name="id_categorie" value="3">
+<input type="hidden" name="nom_categorie" value="Sport">
+
+<?php
+foreach($questions as $q){
+    echo "<div class='question-block'>";
+    echo "<p class='question-texte'>" . $q['question'] . "</p>";
+    echo "<div class='reponses'>";
+    foreach($reponses as $r){
+        if($r['id_question_quiz'] == $q['id']){
+            echo "<label class='reponse-label'>";
+            echo "<input type='radio' name='rep_" . $q['id'] . "' value='" . $r['isTrue'] . "'>";
+            echo $r['reponse'];
+            echo "</label>";
+        }
+    }
+    echo "</div>";
+    echo "</div>";
 }
 ?>
+<a href="resultat.php"><button type="submit" class="btn-valider">Valider</button></a>
+</form>
 
-    </section>
-            <button type="submit">Valider</button>
-
-<?php require_once('footer.php'); 
-?>
+<?php include('footer.php'); ?>
