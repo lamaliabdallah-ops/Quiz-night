@@ -6,10 +6,10 @@
 
         <div class="presentation">
             <h2>À propos du Quiz</h2>
-            <p>Bienvenue sur notre quiz interactif ! Mettez vos connaissances à l’épreuve et relevez le défi à travers une série de questions variées et stimulantes.</p>
-            <p>Que vous soyez débutant ou passionné, vous pourrez tester vos compétences, améliorer votre culture générale et suivre votre progression.</p>
-            <p>À la fin de chaque quiz, découvrez votre score et tentez de faire encore mieux !</p>
-        </div>
+    <p>Êtes-vous prêt à relever le défi ? Notre quiz de culture générale vous attend !</p>
+    <p>Sport, Informatique, Histoire & Géographie... Saurez-vous répondre à toutes les questions ?</p>
+    <p>Chaque bonne réponse vous rapproche du titre de <b>Champion du Quiz !</b> </p>
+    <p>Alors, qu'attendez-vous ? Choisissez votre catégorie et montrez ce que vous savez faire !</p>
     </div>
 
     <?php include('footer.php'); ?>
