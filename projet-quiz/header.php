@@ -15,7 +15,7 @@
         
         <a href=>Tout les Quizz</a>
         <a href=>Resultat</a>
-        <a href=>inscription</a> 
+        <a href="inscription.php">inscription</a> 
         <a href="connexion.php">connexion</a>
 
         
