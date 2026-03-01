@@ -13,8 +13,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = $_POST['password'];
 
     if ($user->login($email, $password)) {
-            header('Location: profil.php');
-            exit();
+            if ($_SESSION['role']  === 'admin') {
+                header("Location: readQuiz.php");
+                exit();
+            }else{
+                header('Location: profil.php');
+                exit();
+            }
+           
     } else {
             $error = "Email ou mot de passe incorrect";
         }

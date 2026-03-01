@@ -54,7 +54,7 @@ $categories = $categorie->getAll();
 <head>
     <meta charset="UTF-8">
     <title>Créer un Quiz</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
      <div class="auth-page">
