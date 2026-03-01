@@ -19,12 +19,10 @@ $sql = "SELECT
             ON reponses_quiz.id_question_quiz = question_quiz.id
         GROUP BY question_quiz.id
         ORDER BY quiz.id";
-$stmt = $pdo->prepare($sql);
+$data = $pdo->prepare($sql);
 
-$data = [];
-$stmt->execute($data);
-
-$resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$data->execute();
+$resultats = $data->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +39,7 @@ $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         <a href="createQuiz.php"> <button>Créer un quiz</button></a>
         
-        <table border="1" cellpadding="10">
+        <table border="1" >
             <thead>
                 <tr>
                     <th>Quiz</th>
@@ -60,12 +58,8 @@ $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?= htmlspecialchars($row['question']) ?></td>
                         <td><?= htmlspecialchars($row['reponses']) ?></td>
                         <td>
-                            <a href="updateQuiz.php?id=<?= $row['quiz_id'] ?>">
-                                <button>Modifier</button>
-                            </a>
-                            
-                            <a href="deleteQuiz.php?id=<?= $row['quiz_id'] ?>" 
-                            onclick="return confirm('Supprimer ce quiz ?')">
+                            <a href="updateQuiz.php?id=<?= $row['quiz_id'] ?>"><button>Modifier</button></a>
+                            <a href="deleteQuiz.php?id=<?= $row['quiz_id'] ?>" onclick="return confirm('Supprimer ce quiz ?')">
                             <button>Supprimer</button>
                         </a>
                     </td>

@@ -5,11 +5,11 @@ require_once 'question.php';
 require_once 'reponse.php';
 
 
-$id_quiz = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+// $id_quiz = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-if ($id_quiz <= 0) {
-    die("ID du quiz invalide.");
-}
+// if ($id_quiz <= 0) {
+//     die("ID du quiz invalide.");
+// }
 
 $quiz = new Quiz();
 $question = new Question();
@@ -35,3 +35,5 @@ $quiz->delete($id_quiz);
 // Redirection vers la liste des quiz
 header("Location: readQuiz.php?message=Quiz supprimé avec succès");
 exit;
+
+?>
