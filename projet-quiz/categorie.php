@@ -28,7 +28,7 @@ class Categorie {
     public function update($id, $name) {
         $data = $this->pdo->prepare('UPDATE categorie SET name = :name WHERE id = :id');
         $data->bindValue(':name', $this->securityInput($name), PDO::PARAM_STR);
-        $data->bindValue(':id',   $id,                         PDO::PARAM_INT);
+        $data->bindValue(':id', $id, PDO::PARAM_INT);
         return $data->execute();
     }
 

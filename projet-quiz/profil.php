@@ -9,7 +9,12 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: connexion.php");
     exit();
 }
-
+ 
+                if (!isset($_SESSION['role']) === 'admin') {
+                   echo " <a href='readQuiz.php'>Dashbord</a>";
+                   
+                }
+            ?>
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +24,7 @@ if (!isset($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="stylee.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="auth-page">
@@ -35,6 +41,7 @@ if (!isset($_SESSION['user_id'])) {
             <a href="modifier_profil">Modifier le profil</a>
             <br>
             <a href="deconnexion.php">Se deconecter</a>
+           
         </div>
     </div>
     

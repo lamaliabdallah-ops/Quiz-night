@@ -3,7 +3,7 @@ session_start();
 require_once 'classes/user.php';
 require_once 'db.php';
 
-require_once 'header.php';
+require_once 'head.php';
 
 $user = new User();
 

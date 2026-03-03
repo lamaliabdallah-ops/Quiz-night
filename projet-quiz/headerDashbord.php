@@ -23,19 +23,11 @@
 
     <nav class="nav-desktop">
 
-        <a href="Tous les quizz.php">tout les Quiz</a>
-      
+        <!-- <a href="Tous les quizz.php">Tous les quizz</a> -->
+        <a href="modifier_profil.php">Modifier Profil</a>
+        <a href="deconnexion.php">Déconnexion</a>
         
-        <?php
-        if (isset($_SESSION['user_id'])) {
-
-            echo '<a href="profil.php">Profil</a>';
-            echo '<a href="deconnexion.php">Déconnexion</a>';
-        } else {
-            echo '<a href="connexion.php">Connexion</a>';
-            echo '<a href="inscription.php">Inscription</a>';
-        }
-        ?>
+      
     </nav>
 </header>
 

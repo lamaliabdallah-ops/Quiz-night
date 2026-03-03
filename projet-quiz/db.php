@@ -14,7 +14,7 @@ class Database{
         dbname=mourtalla-sall_QuizNight;charset=utf8", 
         'mickael', 'yk34b#7Q4',
         [
-           PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION 
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION 
         ]); 
         
     }

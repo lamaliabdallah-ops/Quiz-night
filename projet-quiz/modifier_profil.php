@@ -2,7 +2,7 @@
 session_start();
 require_once 'db.php';
 require_once 'classes/user.php';
-require_once 'header.php';
+// require_once 'header.php';
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // MODIFIER LE MOT DE PASSE
     if (isset($_POST['update_password'])) {
         $currentPassword = $_POST['currentPassword'];
-        $newPassword     = $_POST['newPassword'];
+        $newPassword = $_POST['newPassword'];
 
         if (!$user->updatepassword($_SESSION['user_id'], $currentPassword, $newPassword)) {
             $error = "Mot de passe actuel incorrect.";

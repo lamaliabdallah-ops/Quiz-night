@@ -23,7 +23,6 @@
 
     <nav class="nav-desktop">
 
-        <a href="Tous les quizz.php">tout les Quiz</a>
       
         
         <?php
@@ -31,6 +30,7 @@
 
             echo '<a href="profil.php">Profil</a>';
             echo '<a href="deconnexion.php">Déconnexion</a>';
+            echo  ' <a href="Tous les quizz.php">tout les Quiz</a>';
         } else {
             echo '<a href="connexion.php">Connexion</a>';
             echo '<a href="inscription.php">Inscription</a>';

@@ -33,6 +33,9 @@ $resultats = $data->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="read.css">
 </head>
 <body>
+    <?php
+        require_once 'headerDashbord.php'
+    ?>
 <div class="read-page">
     <div class="read-container">
         <h1>Liste des Quiz</h1>
